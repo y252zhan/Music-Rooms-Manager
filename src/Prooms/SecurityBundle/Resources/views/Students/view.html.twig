@@ -1,0 +1,107 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: left;
+        vertical-align: top;
+        max-width: 70px;
+    }
+    
+</style>
+{% endblock %}
+
+{% block title %}View Student Infomation{% endblock %}
+
+{% block body %}
+    <h1>View Student Infomation</h1>
+    <div>
+        <table>
+            <tr>
+                <td>Student ID</td><td>:</td><td>{{student.id}}</td></tr>
+            <tr>
+                <td>Student name</td><td>:</td><td>{{student.lastname}}, {{student.firstname}}</td></tr>
+            <tr>
+                <td>Year</td><td>:</td><td>{{student.year}}</td></tr>
+            <tr>
+                <td>Degree</td><td>:</td><td>{{student.degree}}</td></tr>
+            <tr>
+                <td>Major</td><td>:</td><td>{{student.major}}</td></tr>
+            <tr>
+                <td>Instrument</td><td>:</td><td>{{student.instrument}}</td></tr>
+            <tr>
+            <tr>
+                <td>GPA</td><td>:</td><td>{{student.gpa}}</td></tr>
+            <tr>
+                <td>Phone</td><td>:</td><td>{{student.phone}}</td></tr>
+            <tr>
+                <td>Cell</td><td>:</td><td>{{student.cell}}</td></tr>
+            <tr>
+                <td>Email</td><td>:</td><td>{{student.email}}</td></tr>
+            <tr>
+                <td>Mailing address 1</td><td>:</td>
+                <td>
+                    {{student.address1}}<br>
+                    {{student.city}}, {{student.postalCode}}<br>
+                    {{student.country}}
+                </td>
+            </tr>
+            {% if student.address2 %}
+            <tr>
+                <td>Mailing address 2</td><td>:</td>
+                <td>
+                    {{student.address2}}<br>
+                    {{student.city}}, {{student.postalCode}}<br>
+                    {{student.country}}
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Last modified by student</td><td>:</td>
+                <td>
+                    {% if student.lastModifiedByStudent %}
+                        {{ student.lastModifiedByStudent|date('Y-m-d H:i:s') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Last reviewed by staff</td><td>:</td>
+                <td>
+                    {% if student.lastReviewedByStaff %}
+                        {{ student.lastReviewedByStaff|date('Y-m-d H:i:s') }}
+                    {% endif %}
+                </td></tr>
+            <tr>
+                <td>Permission to publish personal information</td><td>:</td>
+                <td>
+                    {% if student.permissionToPublishPersonalInfo %}
+                        yes
+                    {% else %}
+                        no
+                    {% endif %}
+                </td></tr>
+            <tr>
+                <td>Maximum register hours allowed : </td><td>:</td>
+                <td>
+                    {% if group %}
+                        {{ group.maxHours }}
+                    {% endif %}
+                </td></tr>
+            <tr>
+                <td>Opening date and time : </td><td>:</td>
+                <td>
+                    {% if group %}
+                        <a href="{{ path('prooms_student_groups_edit', {'id' : group.id}) }}">
+                            {{ group.openingDatetime|date('Y-m-d H:i:s') }}</a>
+                    {% endif %}
+                </td></tr>
+        </table>
+        <a href="{{ path('prooms_students_edit', {'id' : student.id}) }}">
+            <button type='button' class="btn btn-mini">Edit</button></a>
+        {% if app.user.isStaff %}
+            <a href="{{ path('prooms_students_list') }}">
+                <button type='button' class="btn btn-mini">Cancel</button></a>
+        {% endif  %}
+    </div>
+    
+{% endblock %}

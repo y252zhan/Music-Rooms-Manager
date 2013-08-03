@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+    <h3>Register</h3>
+    <form action="{{ path('register') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input value="Submit" type="submit" />
+    </form>
+{% endblock %}

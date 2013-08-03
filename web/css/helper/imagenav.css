@@ -1,0 +1,136 @@
+/********************************************************************************************
+File:           imagenav.css
+Version:        6.0
+Last Modified:  Aug-25-2009
+---------------------------------------------------------------------------------------------
+Description:    Stylehseet for the University of British Columbia's web sites.
+---------------------------------------------------------------------------------------------
+Notes:          CSS styles for image based primary navigation.
+---------------------------------------------------------------------------------------------
+Version Notes:
+- v.6.0:        Official CSS styles released with Template 6.0.
+---------------------------------------------------------------------------------------------
+Contact:        UBC Public Affairs
+                t: 604.822.2130
+                e: web.admin@ubc.ca
+                w: www.webcommunications.ubc.ca
+
+********************************************************************************************/
+
+#UbcMainNav.UbcImageNav, #UbcMainNav.UbcImageNav li a
+{
+	background: url(../../img/header/mainNav2.gif) no-repeat;
+	display: block;
+}
+
+#UbcMainNav.UbcImageNav li a, .UbcImageNav li a
+{
+	text-indent: -5000px;
+	padding: 14px 0 0 0;
+}
+
+
+#UbcMainNav.UbcImageNav li a.UbcHome
+{
+	text-indent: -5000px;
+	background-image: none;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcHome
+{
+	width: 66px;
+	background-position: 0 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcHome:hover
+{
+    background-position: 0 -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcAdmission
+{
+	width: 92px;
+	background-position: -66px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcAdmission:hover
+{
+    background-position: -66px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcAbout-ubc
+{
+	width: 85px;
+	background-position: -158px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcAbout-ubc:hover
+{
+    background-position: -158px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcStrategy
+{
+	width: 151px;
+	background-position: -243px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcStrategy:hover
+{
+    background-position: -243px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcResearch
+{
+	width: 79px;
+	background-position: -394px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcResearch:hover
+{
+    background-position: -394px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcPrograms
+{
+	width: 148px;
+	background-position: -473px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcPrograms:hover
+{
+    background-position: -473px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcAthletics-recreation
+{
+	width: 164px;
+	background-position: -621px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcAthletics-recreation:hover
+{
+    background-position: -621px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcLibrary
+{
+	width: 67px;
+	background-position: -785px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcLibrary:hover
+{
+    background-position: -785px -40px;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcSupporting-ubc
+{
+	width: 126px;
+	background-position: -852px 0;
+}
+
+#UbcMainNav.UbcImageNav li a.UbcSupporting-ubc:hover
+{
+    background-position: -852px -40px;
+}

@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Timetable{% endblock %}
+
+{% block body %}
+    <h3>Timetable</h3>
+    <div>{{ include('::showTimetable.html.twig') }}</div>
+    <a href="{{ path('prooms_rooms_schedules_print') }}">
+        <button type='button' class="btn btn-mini">Display/Print</button></a>
+{% endblock %}
+ 
+{% block javascripts %}
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"
+               data-dojo-config="async: true"></script>
+<script>
+require(["dojo/dom", "dojo/query", "dojo/on", "dojo/ready", "dojo/_base/lang", "dojo/NodeList-traverse", "dojo/dom-class", "dojo/domReady!"],
+    function(dom, query, on, ready, hitch, domClass) {
+        ready(function(){
+            var term1_tbody = query('#term_1').children();
+            var term1_tr_list = query('> tr', term1_tbody[0]);
+            var term2_tbody = query('#term_2').children();
+            var term2_tr_list = query('> tr', term2_tbody[0]);
+            {% for hour in userHours %}
+                {% if hour.term == 1 %}
+                    var term1_tdList = query('> td', term1_tr_list[{{hour.startTime}}]);
+                    term1_tdList[{{hour.dayOfWeek}}].innerHTML="Room "+{{hour.room.id}};
+                {% elseif hour.term == 2 %}
+                    var term2_tdList = query('> td', term2_tr_list[{{hour.startTime}}]);
+                    term2_tdList[{{hour.dayOfWeek}}].innerHTML="Room "+{{hour.room.id}};
+                {% endif %}
+            {% endfor %}
+        });
+ 
+});
+</script>
+{% endblock %}

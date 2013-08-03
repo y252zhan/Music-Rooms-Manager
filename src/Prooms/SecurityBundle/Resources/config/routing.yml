@@ -1,0 +1,101 @@
+#prooms_security_view:
+#    pattern:  /user
+#    defaults: { _controller: ProomsSecurityBundle:Security:view }
+    
+prooms_security_edit:
+    pattern:  /user/edit
+    defaults: { _controller: ProomsSecurityBundle:Security:edit }
+    
+prooms_students_list:
+    pattern: /students/list
+    defaults: { _controller: ProomsSecurityBundle:Students:list }
+    
+prooms_students_download:
+    pattern: /students/download
+    defaults: { _controller: ProomsSecurityBundle:Students:downloadStudents }
+    
+prooms_students_add:
+    pattern: /students/add
+    defaults: { _controller: ProomsSecurityBundle:Students:add }
+    
+prooms_students_upload:
+    pattern: /students/upload
+    defaults: { _controller: ProomsSecurityBundle:Students:upload }
+    
+prooms_students_edit:
+    pattern: /students/edit/{id}
+    defaults: { _controller: ProomsSecurityBundle:Students:edit }
+    
+prooms_students_view:
+    pattern: /students/view/{id}
+    defaults: { _controller: ProomsSecurityBundle:Students:view }
+    
+prooms_students_delete:
+    pattern: /students/delete/{id}
+    defaults: { _controller: ProomsSecurityBundle:Students:delete }
+    
+prooms_students_clear:
+    pattern: /students/clear
+    defaults: { _controller: ProomsSecurityBundle:Students:clearAll }
+
+prooms_staffs_list:
+    pattern: /staffs/list
+    defaults: { _controller: ProomsSecurityBundle:Staffs:list }
+    
+prooms_staffs_add:
+    pattern: /staffs/add
+    defaults: { _controller: ProomsSecurityBundle:Staffs:add }
+    
+prooms_staffs_edit:
+    pattern: /staffs/edit/{id}
+    defaults: { _controller: ProomsSecurityBundle:Staffs:edit }
+    
+prooms_staffs_delete:
+    pattern: /staffs/delete/{id}
+    defaults: { _controller: ProomsSecurityBundle:Staffs:delete }
+    
+prooms_student_groups_list:
+    pattern: /student/groups/list
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:list }
+    
+prooms_student_groups_add:
+    pattern: /student/groups/add
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:add }
+    
+prooms_student_groups_add_default:
+    pattern: /student/groups/add/default
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:addDefault }
+    
+prooms_student_groups_edit:
+    pattern: /student/groups/edit/{id}
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:edit }
+    
+prooms_student_groups_delete:
+    pattern: /student/groups/delete/{id}
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:delete }
+    
+prooms_student_groups_download:
+    pattern: /student/groups/download
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:downloadRooms }
+    
+prooms_student_groups_upload:
+    pattern: /student/groups/upload
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:upload }
+    
+prooms_student_groups_clear:
+    pattern: /student/groups/clear
+    defaults: { _controller: ProomsSecurityBundle:StudentGroups:clearAll }
+    
+prooms_groups_add:
+    pattern: /groups/add
+    defaults: { _controller: ProomsSecurityBundle:Groups:add }
+    
+prooms_groups_list:
+    pattern: /groups/list
+    defaults: { _controller: ProomsSecurityBundle:Groups:list }
+
+prooms_groups_delete:
+    pattern: /groups/delete/{id}
+    defaults: { _controller: ProomsSecurityBundle:Groups:delete }
+    
+  

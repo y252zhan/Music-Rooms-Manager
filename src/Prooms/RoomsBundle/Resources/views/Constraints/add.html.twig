@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Manage rooms{% endblock %}
+
+{% block body %}
+    <h3>Add Room {{room.id}} constraint</h3>
+    <form action="{{ path('prooms_constraints_add', {'roomId' : room.id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_constraints_list', {'roomId' : room.id}) }}">
+            <button type='button' class="btn btn-mini">cancel</button></a>
+    </form>
+{% endblock %}

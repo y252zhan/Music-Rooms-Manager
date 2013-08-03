@@ -1,0 +1,95 @@
+prooms_rooms_list:
+    pattern: /rooms/list
+    defaults: { _controller: ProomsRoomsBundle:Rooms:list }
+    
+prooms_rooms_list_download:
+    pattern: /rooms/list/download
+    defaults: { _controller: ProomsRoomsBundle:Rooms:downloadRooms }
+    
+prooms_rooms_upload:
+    pattern: /rooms/upload
+    defaults: { _controller: ProomsRoomsBundle:Rooms:upload }
+    
+prooms_rooms_clear:
+    pattern: /rooms/clear
+    defaults: { _controller: ProomsRoomsBundle:Rooms:clearAll }
+
+prooms_rooms_add:
+    pattern:  /rooms/add
+    defaults: { _controller: ProomsRoomsBundle:Rooms:add }
+    
+prooms_rooms_delete:
+    pattern:  /rooms/delete/{id}
+    defaults: { _controller: ProomsRoomsBundle:Rooms:delete }
+    
+prooms_rooms_show:
+    pattern: /rooms/{id}
+    defaults: { _controller: ProomsRoomsBundle:Rooms:show }
+    
+prooms_rooms_edit_info:
+    pattern: /rooms/edit/{id}
+    defaults: { _controller: ProomsRoomsBundle:Rooms:edit }
+    
+prooms_rooms_view_unavailable_hours:
+    pattern: /rooms/hours/{id} 
+    defaults: { _controller: ProomsRoomsBundle:RoomUnavailableHours:view }
+    
+prooms_rooms_edit_unavailable_hours:
+    pattern: /rooms/edit/hours/{id}/{term}
+    defaults: { _controller: ProomsRoomsBundle:RoomUnavailableHours:edit }
+    
+prooms_rooms_schedules_edit:
+    pattern: /rooms/{id}/{term}/edit
+    defaults: { _controller: ProomsRoomsBundle:UserRooms:edit }
+    
+prooms_rooms_schedules_remove_all:
+    pattern: /rooms/hours/remove/all
+    defaults: { _controller: ProomsRoomsBundle:UserRooms:removeAll }
+    
+prooms_rooms_schedules_view:
+    pattern: /rooms/{id}/view
+    defaults: { _controller: ProomsRoomsBundle:UserRooms:view }
+    
+prooms_rooms_schedules_view_print:
+    pattern: /rooms/{id}/print
+    defaults: { _controller: ProomsRoomsBundle:UserRooms:browserPrintRoomTimetable }
+    
+prooms_rooms_schedules_user:
+    pattern: /rooms/view/user
+    defaults: { _controller: ProomsRoomsBundle:UserRooms:userSchedule }
+    
+prooms_rooms_schedules_print:
+    pattern: /rooms/print/user
+    defaults: { _controller: ProomsRoomsBundle:UserRooms:browserPrintUserTimetable }
+    
+prooms_constraints_list:
+    pattern: /rooms/constraints/{roomId}/list
+    defaults: { _controller: ProomsRoomsBundle:RoomConstraints:list }
+    
+prooms_constraints_add:
+    pattern: /rooms/constraints/{roomId}/add
+    defaults: { _controller: ProomsRoomsBundle:RoomConstraints:add }
+    
+prooms_constraints_delete:
+    pattern: /rooms/constraints/{roomId}/{instrument}
+    defaults: { _controller: ProomsRoomsBundle:RoomConstraints:delete }
+    
+prooms_constraints_apply:
+    pattern: /rooms/constraints/{roomId}
+    defaults: { _controller: ProomsRoomsBundle:RoomConstraints:apply }
+    
+prooms_system_status_view:
+    pattern: /system/status
+    defaults: { _controller: ProomsRoomsBundle:SystemStatus:view }
+    
+prooms_system_status_open:
+    pattern: /system/open
+    defaults: { _controller: ProomsRoomsBundle:SystemStatus:open }
+    
+prooms_system_status_close:
+    pattern: /system/close
+    defaults: { _controller: ProomsRoomsBundle:SystemStatus:close }
+    
+prooms_system_status_unavailable:
+    pattern: /system/status/unavailable
+    defaults: { _controller: ProomsRoomsBundle:SystemStatus:systemUnavailable }

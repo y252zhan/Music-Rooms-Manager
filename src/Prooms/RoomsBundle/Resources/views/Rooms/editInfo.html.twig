@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    #roomImage {
+        display: inline;
+        position: relative;
+        float:left;
+        background: lightblue;
+    }
+    #roomInfo {
+        margin-left: 370px;
+        
+    }
+</style>
+{% endblock %}
+
+{% block title %}Manage rooms{% endblock %}
+
+{% block body %}
+    <h3>Edit Practice room {{ room.id }}</h3>
+    <div class="row">
+      <div id="roomImage"><img src="{{ asset(room.webPath) }}" width="300px" /></div>
+      <div id="roomInfo">
+        <form id="edit_room_info" action="{{ path('prooms_rooms_edit_info', {'id' : room.id} ) }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit"/>
+        <a href="{{ path('prooms_rooms_show', {'id' : room.id }) }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+        </form>
+      </div>
+    </div>
+{% endblock %}
+

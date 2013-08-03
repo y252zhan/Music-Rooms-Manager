@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+    #confirm_notice_div {
+        text-align:center;
+        background-color: lightpink;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Edit Student Information{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_STUDENT') %}
+    <div id="confirm_notice_div">
+        <p><b>Please confirm you personal information and click submit button to continue on.</b></p>
+    </div>
+    {% endif %}
+    <h1>Edit Student Information</h1>
+    <form action="{{ path('prooms_students_edit', {'id' : student.id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_students_list') }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+    
+{% endblock %}

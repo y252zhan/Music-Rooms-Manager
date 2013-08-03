@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Manage rooms{% endblock %}
+
+{% block body %}
+    <h1>Add Practice Room</h1>
+    <form action="{{ path('prooms_rooms_add') }}" method="post" {{ form_enctype(form) }}>
+        <div class="form_error">
+            <p>{{ form_errors(form) }}</p>
+        </div>
+        {{ form_rest(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_rooms_list') }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+{% endblock %}

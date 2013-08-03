@@ -1,0 +1,79 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+        vertical-align: middle;
+    }
+    #flg_img {
+        width: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}List Students{% endblock %}
+
+{% block body %}
+    <h1>List Students</h1>
+    <div>
+        {% if students|length != 0 %}
+        <table border="1">
+            <tr>
+                <th>StudentId</th>
+                <th>Name</th>
+                <th>Degree</th>
+                <th>Year</th>
+                <th>Major</th>
+                <th>Instrument</th>
+                <th>Recently update</th>
+                <th>Actions</th>
+            </tr>
+            {% for student in students%}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.lastname }}, {{student.firstname}}</td>
+                    <td>{{ student.degree }}</td>
+                    <td>{{ student.year }}</td>
+                    <td>{{ student.major }}</td>
+                    <td>{{ student.instrument }}</td>
+                    <td>
+                        {% if student.lastModifiedByStudent > student.lastReviewedByStaff %}
+                            <img id="flg_img" src="{{ asset('img/flag.jpg') }}"/>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('prooms_students_view', {'id' : student.id}) }}">
+                            <button class="btn btn-mini" type='button'>View Detail</button></a>
+                        <a href="{{ path('prooms_students_delete', {'id' : student.id}) }}">
+                            <button class="btn btn-mini" type='button'>Delete</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>Students database is currently empty!</p>
+        {% endif %}
+            
+        <a href="{{ path('prooms_students_add') }}">
+            <button class="btn btn-mini" type='button'>Add</button></a>
+        {% if students|length != 0 %}
+            <a href="{{ path('prooms_students_download') }}">
+                <button class="btn btn-mini" type='button'>Download excel</button></a>
+        {% endif %}
+        <a href="{{ path('prooms_students_clear') }}" onclick="return confirmAction()">
+            <button class="btn btn-mini" type='button'>Clear all</button></a>
+        <a href="{{ path('prooms_students_upload') }}">
+            <button class="btn btn-mini" type='button'>Upload students</button></a>
+    </div>
+    
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function confirmAction() {
+        var confirmed = confirm("Are you sure? This will remove all students from the list.");
+        return confirmed;
+    }
+</script>
+{% endblock %}

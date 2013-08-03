@@ -1,0 +1,22 @@
+login:
+    pattern:  /login
+    defaults: { _controller: ProomsSecurityBundle:Security:login }
+    
+login_check:
+    pattern:  /login_check
+    
+logout:
+    pattern:  /logout
+    
+register:
+    pattern:  /register
+    defaults: { _controller: ProomsSecurityBundle:Security:register }
+
+prooms_security:
+    resource: "@ProomsSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+prooms_rooms:
+    resource: "@ProomsRoomsBundle/Resources/config/routing.yml"
+    prefix:   /
+

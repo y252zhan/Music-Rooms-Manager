@@ -1,0 +1,30 @@
+parameters:
+#    prooms_security.example.class: Prooms\SecurityBundle\Example
+
+# services:
+#    prooms_security.example:
+#        class: %prooms_security.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+services:
+    prooms_security.form.type.group:
+        class: Prooms\SecurityBundle\Form\Type\GroupType
+        tags:
+            - { name: form.type, alias: group }
+    
+    prooms_security.form.type.staff:
+        class: Prooms\SecurityBundle\Form\Type\StaffType
+        arguments: [@security.context]
+        tags:
+            - { name: form.type, alias: staff }
+            
+    prooms_security.form.type.student.group:
+        class: Prooms\SecurityBundle\Form\Type\StudentGroupType
+        tags:
+            - { name: form.type, alias: student_group }
+            
+    prooms_security.form.type.student:
+        class: Prooms\SecurityBundle\Form\Type\StudentType
+        arguments: [@security.context]
+        tags:
+            - { name: form.type, alias: student }

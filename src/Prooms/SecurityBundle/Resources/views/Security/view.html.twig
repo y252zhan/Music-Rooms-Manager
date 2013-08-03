@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Personal Information{% endblock %}
+
+{% block body %}
+    <h3>Personal Information</h3>
+    <table>
+        <tr>
+            <td>Student Id: </td><td>{{ app.user.studentId }}</td>
+        </tr>
+        <tr>
+            <td>Name: </td><td>{{ app.user.name }}</td>
+        </tr>
+        <tr>
+            <td>Degree: </td><td>{{ app.user.degree }}</td>
+        </tr>
+        <tr>
+            <td>Major: </td><td>{{ app.user.major }}</td>
+        </tr>
+        <tr>
+            <td>Year: </td><td>{{ app.user.year }}</td>
+        </tr>
+        <tr>
+            <td>Instrument: </td><td>{{ app.user.instrument }}</td>
+        </tr>
+        <tr>
+            <td>Phone: </td><td>{{ app.user.phone }}</td>
+        </tr>
+        <tr>
+            <td>Email: </td><td>{{ app.user.email }}</td>
+        </tr>
+        <tr>
+            <td>Mailing Address: </td><td>{{ app.user.mailingAddress }}</td>
+        </tr>
+    </table>
+    <a href="{{ path('prooms_security_edit') }}">
+        <button class="btn btn-primary" type='button'>Edit</button></a>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block title %}List Staffs{% endblock %}
+
+{% block body %}
+    <h3>List Staffs</h3>
+    <div>
+        {% if staffs|length != 0 %}
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            {% for staff in staffs%}
+                <tr>
+                    <td>{{ staff.id }}</td>
+                    <td>{{ staff.lastname }}, {{staff.firstname}}</td>
+                    <td>
+                        <a href="{{ path('prooms_staffs_edit', {'id' : staff.id }) }}">
+                            <button class="btn btn-mini" type='button'>Edit</button></a>
+                        <a href="{{ path('prooms_staffs_delete', {'id' : staff.id }) }}">
+                            <button class="btn btn-mini" type='button'>Delete</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>Staffs table is currently empty!</p>
+        {% endif %}
+        <a href="{{ path('prooms_staffs_add') }}">
+            <button class="btn btn-mini" type='button'>Add</button></a>
+    </div>
+    
+{% endblock %}

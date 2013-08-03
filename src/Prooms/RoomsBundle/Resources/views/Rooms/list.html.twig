@@ -1,0 +1,75 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        vertical-align:middle;
+        text-align: left;
+    }
+    #room_img_col img{
+        width: 100px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}List Rooms{% endblock %}
+
+{% block body %}
+    <h1>List Rooms</h1>
+    <div>
+        {% if rooms|length != 0 %}
+        <table border="1">
+            {% for room in rooms%}
+                <tr>
+                    <td id="room_img_col"><img src="{{asset(room.webPath)}}"/></td>
+                    <td><b>Room Id: {{room.Id}}</b></td>
+                    <td>Piano Type: {{room.pianoType}}</td>
+                    <td>......</td>
+                    <td>
+                        <a href="{{ path('prooms_rooms_show', {'id' : room.id}) }}">
+                            <button class="btn btn-mini" type='button'>View Detail</button></a>
+                    </td>
+                    {% if app.user and app.user.isStaff %}
+                    <td width="30%">
+                        <a href="{{ path('prooms_rooms_delete', {'id' : room.id}) }}">
+                            <button class="btn btn-mini" type='button'>Delete</button></a>
+                        <a href="{{ path('prooms_rooms_view_unavailable_hours', {'id' : room.id}) }}">
+                            <button class="btn btn-mini" type='button'>Edit Unavailable Hours</button></a>
+                        <a href="{{ path('prooms_rooms_schedules_view', {'id' : room.id}) }}">
+                            <button class="btn btn-mini" type='button'>Schedule</button></a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>Rooms database is currently empty!</p>
+        {% endif %}
+        {% if app.user and app.user.isStaff %}
+            <a href="{{ path('prooms_rooms_add') }}">
+                <button class="btn btn-mini" type='button'>Add</button></a>
+            <a href="{{ path('prooms_rooms_list_download') }}">
+                <button class="btn btn-mini" type='button'>Download excel</button></a>
+            <a href="{{ path('prooms_rooms_clear') }}" onclick="return confirmAction()">
+                <button class="btn btn-mini" type='button'>Clear all</button></a>
+            <a href="{{ path('prooms_rooms_upload') }}">
+                <button class="btn btn-mini" type='button'>Upload rooms</button></a>
+        {% endif %}
+    </div>
+    
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function confirmAction() {
+        var confirmed = confirm("Are you sure? This will remove all rooms from the list.");
+        return confirmed;
+    }
+    
+    {% if group %}
+        var time_bar = document.getElementById("registration_start_time");
+        time_bar.style.backgroundColor = "lightcoral";
+        time_bar.innerHTML = "<p><b>Your registration opening date and time is {{ group.openingDatetime|date('Y-m-d H:i:s') }}</b></p>";
+    {% endif %}
+</script>
+{% endblock %}

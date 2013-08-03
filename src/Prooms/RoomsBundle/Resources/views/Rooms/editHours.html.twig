@@ -1,0 +1,95 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    .timeCol:hover {
+        background-color: white;
+    }
+    td:hover {
+        background-color:#D3D3D3;
+    } 
+    td.selected {
+        background-color: #FFCF8B
+    }
+    td {
+        width: 80px;
+        padding: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Manage rooms{% endblock %}
+
+{% block body %}
+    <h3>Practice Room {{room.id}} : Edit Unavailable Hours</h3>
+    <form action="{{ path('prooms_rooms_edit_unavailable_hours', {'id' : room.id, 'term':term}) }}" method="post">
+        <input type="hidden" name="weekday_1" id="form_1">
+        <input type="hidden" name="weekday_2" id="form_2">
+        <input type="hidden" name="weekday_3" id="form_3">
+        <input type="hidden" name="weekday_4" id="form_4">
+        <input type="hidden" name="weekday_5" id="form_5">
+        <input type="hidden" name="weekday_6" id="form_6">
+        <input type="hidden" name="weekday_7" id="form_7">
+        {{ include('::editTimetable.html.twig') }}
+        <input class="btn btn-mini" value="Submit" type="submit"/>
+        <a href="{{ path('prooms_rooms_view_unavailable_hours', {'id':room.id}) }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+{% endblock %}
+    
+{% block javascripts %}
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"
+               data-dojo-config="async: true"></script>
+<script>
+require(["dojo/dom", "dojo/query", "dojo/on", "dojo/ready", "dojo/_base/lang", "dojo/dom-class", "dojo/domReady!"],
+    function(dom, query, on, ready, hitch, domClass) {
+        ready(function(){
+            var trList = query("tr", "edit_schedule");
+            {% for hour in room.unavailableHours %}
+                {% if hour.term == term %}
+                    var formInput = dom.byId("form_"+{{hour.dayOfWeek}});
+                    if(formInput.value=="") {
+                        formInput.value = {{hour.startTime}};
+                    }
+                    else {
+                        formInput.value += ","+{{hour.startTime}};
+                    }
+                    var tdList = query('> td', trList[{{hour.startTime}}]);
+                    tdList[{{hour.dayOfWeek}}].className="selected";
+                {% endif %}
+            {% endfor %}
+        });
+        
+        query("tr", "edit_schedule").forEach(function(trNode, trIndex, trList){
+            query('> td', trNode).forEach(function(node, index, list){
+                var tdObj = {
+                    td: node,
+                    trNo: trIndex,
+                    tdNo: index,
+                    formInputId: "form_"+index
+                };
+                var recordSelected = dojo.hitch(tdObj, function(){
+                    var formInput = dom.byId(this.formInputId);
+                    if(this.td.className=="selected") {
+                        this.td.className = "";
+                        var inputValue = formInput.value;
+                        if(inputValue.length==1)
+                            formInput.value = inputValue.replace(this.trNo, "");
+                        else if(inputValue.charAt(0) == this.trNo)
+                            formInput.value = inputValue.replace(this.trNo+",", "");
+                        else
+                            formInput.value = inputValue.replace(","+this.trNo, "");
+                    }
+                    else{
+                        this.td.className = "selected";
+                        if(formInput.value=="") formInput.value = this.trNo;
+                        else formInput.value += ","+this.trNo;
+                    }
+                });
+                on(node, 'click', recordSelected);
+            });
+        });
+ 
+});
+</script>
+{% endblock %}

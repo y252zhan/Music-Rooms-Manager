@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+    #student_group_openingDatetime_date select {
+        width: 80px;
+        margin-left: 5px;
+    }
+    #student_group_openingDatetime_time select {
+        width: 90px;
+        margin-left: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Add New Student Group{% endblock %}
+
+{% block body %}
+    <h1>Add New Student Group</h1>
+    <form action="{{ path('prooms_student_groups_add') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_student_groups_list') }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block title %}List Student Groups{% endblock %}
+
+{% block body %}
+    <h1>List Student Groups</h1>
+    <h3>Default Student Group</h3>
+    <div>
+        {% if defaultGroup %}
+        <table border="1">
+            <tr>
+                <th>Group</th>
+                <th>Maximum Hours</th>
+                <th>Opening Date and Time</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>Default group</td>
+                <td>{{ defaultGroup.maxHours }}</td>
+                <td>{{ defaultGroup.openingDatetime|date('Y-m-d H:i:s') }}</td>
+                <td>
+                    <a href="{{ path('prooms_student_groups_edit', {'id' : defaultGroup.id }) }}">
+                        <button class="btn btn-mini" type='button'>Edit</button></a>
+                    <a href="{{ path('prooms_student_groups_delete', {'id' : defaultGroup.id }) }}">
+                        <button class="btn btn-mini" type='button'>Delete</button></a>
+                </td>
+            </tr>
+        </table>
+        {% else %}
+            <p>Default student group does not exist!</p>
+        {% endif %}
+        <a href="{{ path('prooms_student_groups_add_default') }}">
+            <button class="btn btn-mini" type='button'>Add</button></a>
+    </div>
+    
+    <h3>Other Student Groups</h3>
+    <div>
+        {% if studentGroups|length != 0 %}
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Degree</th>
+                <th>Major</th>
+                <th>Year</th>
+                <th>Instrument</th>
+                <th>GPA Floor</th>
+                <th>Maximum Hours</th>
+                <th>Opening Date and Time</th>
+                <th>Actions</th>
+            </tr>
+            {% for studentGroup in studentGroups%}
+                <tr>
+                    <td>{{ studentGroup.id }}</td>
+                    <td>{{ studentGroup.degree }}</td>
+                    <td>
+                        {% if studentGroup.major %}
+                            {{ studentGroup.major }}
+                        {% else %}
+                            any
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if studentGroup.year %}
+                            {{ studentGroup.year }}
+                        {% else %}
+                            any
+                        {% endif %}
+                    </td>
+                    <td>{{ studentGroup.instrument }}</td>
+                    <td>{{ studentGroup.gpaFloor }}</td>
+                    <td>{{ studentGroup.maxHours }}</td>
+                    <td>{{ studentGroup.openingDatetime|date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('prooms_student_groups_edit', {'id' : studentGroup.id }) }}">
+                            <button class="btn btn-mini" type='button'>Edit</button></a>
+                        <a href="{{ path('prooms_student_groups_delete', {'id' : studentGroup.id }) }}">
+                            <button class="btn btn-mini" type='button'>Delete</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>Student groups table is currently empty!</p>
+        {% endif %}
+        <a href="{{ path('prooms_student_groups_add') }}">
+            <button class="btn btn-mini" type='button'>Add</button></a>
+        <a href="{{ path('prooms_student_groups_download') }}">
+            <button class="btn btn-mini" type='button'>Download Excel</button></a>
+        <a href="{{ path('prooms_student_groups_clear') }}">
+            <button class="btn btn-mini" type='button' onclick="return confirmAction()">Clear all</button></a>
+        <a href="{{ path('prooms_student_groups_upload') }}">
+            <button class="btn btn-mini" type='button'>Upload student groups</button></a>
+    </div>
+    
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function confirmAction() {
+        var confirmed = confirm("Are you sure? This will remove all student groups from the list.");
+        return confirmed;
+    }
+</script>
+{% endblock %}

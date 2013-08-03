@@ -1,0 +1,564 @@
+/********************************************************************************************
+File:           clf-required.css
+Version:        6.0
+Last Modified:  Aug-25-2009
+---------------------------------------------------------------------------------------------
+Description:    Stylehseet for the University of British Columbia's web sites.
+---------------------------------------------------------------------------------------------
+Notes:          CSS styles for the minimum Common Look and Feel Template.
+---------------------------------------------------------------------------------------------
+Version Notes:
+- v.6.0:        Official CSS styles released with Template 6.0.
+---------------------------------------------------------------------------------------------
+Contact:        UBC Public Affairs
+                t: 604.822.2130
+                e: web.admin@ubc.ca
+                w: www.webcommunications.ubc.ca
+
+********************************************************************************************/
+
+/* CSS Document */
+body 
+{
+	background: #fff;
+	font-size: 75%;
+	font-family: Arial, Sans-Serif;
+	color: #5d5d5d;
+}
+
+input, select
+{
+	color: #5d5d5d;
+}
+
+body .UbcContainer
+{
+	/* width set in clf-required-fixedwidth.css or clf-required-fullwidth.css */
+	margin: 0 auto;
+	border-left: 1px solid #d6d6d6;
+    border-right: 1px solid #d6d6d6;
+	overflow: hidden;
+}
+
+.UbcClear
+{
+	overflow: hidden;
+}
+
+#UbcHeaderWrapper
+{
+    background: #DCDCDC;
+}
+
+/* Top Tool Bar */
+
+#UbcToolBarWrapper
+{
+	height: 33px;
+	background: #d1d9de;
+}
+
+#UbcToolBar
+{
+    border-color: #d1d9de;
+}
+
+#UbcToolBar #UbcToolNav
+{
+	height: 33px;
+	float: right;
+}
+
+#UbcToolNav {
+	margin-right: 0;	
+}
+
+#UbcToolNav li
+{
+	float: left;
+	height: 25px;
+	margin: 5px 7px 0 0;
+}
+
+#UbcToolNav li a
+{
+	display: block;
+	height: 28px;
+	text-indent: -5000px;
+}
+
+#UbcToolNav li a#UbcCampusLinks
+{
+    width: 89px;
+    background: url(../../img/header/campusesBtn.gif) no-repeat;
+}
+
+#UbcToolNav li a#UbcCampusLinks.UbcSelected
+{
+	background-position: 0 -28px;
+}
+
+#UbcToolNav li a#UbcDirectLinks
+{
+	width: 114px;
+	background: url(../../img/header/directoryBtn.gif) no-repeat;
+}
+
+/*#UbcToolNav li a#UbcDirectLinks:hover
+{
+	background-position: 0 -22px;
+}*/
+
+#UbcToolNav li a#UbcDirectLinks.UbcSelected
+{
+	background-position: 0 -28px;
+}
+
+/*#UbcToolNav li a#UbcDirectLinks.selected:hover
+{
+	background-position: 0 -44px;
+}*/
+
+#UbcToolNav li a#UbcQuickLinks
+{
+	width: 115px;
+	background: url(../../img/header/quickLinkBtn.gif) no-repeat;
+}
+
+/*#UbcToolNav li a#UbcQuickLinks:hover
+{
+	background-position: 0 -22px;
+}*/
+
+#UbcToolNav li a#UbcQuickLinks.UbcSelected
+{
+	background-position: 0 -28px;
+}
+
+/*#UbcToolNav li a#UbcQuickLinks.selected:hover
+{
+	background-position: 0 -44px;
+}*/
+
+#UbcToolNav li.UbcForm
+{
+	padding: 0 0 0 8px;
+	border-left: 1px solid #bcc3c7;
+}
+
+#UbcToolNav #UbcSearchForm input
+{
+	display: block;
+	float: left;
+}
+
+#UbcToolNav #UbcSearchForm input.UbcSearchBtn
+{
+	width: 22px;
+	height: 22px;
+	background: transparent url(../../img/header/searchBtn.gif) no-repeat 0 -22px;
+}
+
+#UbcToolNav #UbcSearchForm input.UbcSearchField
+{
+	background: transparent url(../../img/header/searchBox.gif) no-repeat;
+	width: 194px;
+	padding: 3px 5px 0 24px;
+	border: none;
+	height: 25px;
+}
+
+/* Mega nav */
+#UbcMegaMenuesWrapper
+{
+	background: #002859 url(../../img/content/megaMenuTopBg.gif) repeat-x top left;
+	border: none;
+	width: 982px;
+	/*display: none;*/
+}
+
+#UbcMegaMenues
+{
+	position: relative;
+	background: transparent url(../../img/content/megaMenuBottomBg.gif) repeat-x bottom left;
+	padding: 20px 0;
+	display: none;
+}
+
+#UbcMegaMenues a.UbcCloseBtn
+{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	color: #fff;
+	text-decoration: none;
+	font-size: 90%;
+}
+
+#UbcMegaMenues a.UbcCloseBtn:hover
+{
+	text-decoration: underline;
+}
+
+#UbcMegaMenues ul.UbcMegaMenu
+{
+	margin: 0 auto;
+	display: none;
+}
+
+#UbcMegaMenues ul.UbcCol
+{
+    width: 940px;
+}
+
+#UbcMegaMenues ul.UbcCol3
+{
+	width: 720px;
+}
+
+#UbcMegaMenues ul.UbcCol4
+{
+	width: 940px;
+}
+
+#UbcMegaMenues li.UbcMenuSection
+{
+	float: left;
+	width: 220px;
+	margin: 0 20px 0 0;
+	text-align: left;
+}
+
+#UbcMegaMenues ul.UbcCol li.UbcMenuSection
+{
+    width: 940px;
+    margin-right: 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection h3
+{
+	font-size: 120%;
+	color: #e3e3e3;
+	margin: 0 0 0.3em 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection p
+{
+	color: #8f8f8f;
+	font-size: 100%;
+	line-height: 1.5em;
+	margin: 0.2em 0 1em;
+}
+
+#UbcMegaMenues li.UbcMenuSection a
+{
+	color: #e3e3e3;
+	font-size: 100%;
+	text-decoration: none;
+}
+
+#UbcMegaMenues ul.UbcCol li.UbcMenuSection a
+{
+    font-size: 100%;
+}
+
+#UbcMegaMenues ul.UbcCol li.UbcMenuSection a.UbcBanner
+{
+    display: block;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection a:hover
+{
+	text-decoration: underline;
+}
+
+#UbcMegaMenues li.UbcMenuSection ul
+{
+	border-bottom: 1px solid #415f78;
+	margin-right: 0;
+	margin-left: 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection li
+{
+	border-top: 1px solid #415f78;
+	padding: 0.5em 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection ul.UbcSubSection,
+#UbcMegaMenues li.UbcMenuSection ul.UbcSubSection li
+{
+	border: none;
+	padding: 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection ul.UbcSubSection li
+{
+	border-right: 1px solid #5a6b7a;
+	float: left;
+	margin: 0 5px 0 0;
+	padding: 2px 5px 0 0;
+}
+
+#UbcMegaMenues li.UbcMenuSection ul.UbcSubSection li a,
+#UbcMegaMenues li.UbcMenuSection.UbcLast ul.UbcSubSection.UbcClear li a
+{
+	color: #80a1b6;
+	text-decoration: none;
+}
+
+#UbcMegaMenues li.UbcMenuSection ul.UbcSubSection li a:hover,
+#UbcMegaMenues li.UbcMenuSection.UbcLast ul.UbcSubSection.UbcClear li a:hover
+{
+	text-decoration: underline;
+	color:#b9c9d5;
+}
+
+#UbcMegaMenues li.UbcMenuSection.UbcLast,
+#UbcMegaMenues li.UbcMenuSection ul.UbcSubSection li.UbcLast
+{
+	margin-right: 0;
+	padding-right: 0;
+	border-right: none;
+}
+#UbcMegaMenues li.UbcMenuSection.UbcLast ul.UbcSubSection.UbcClear li {
+	margin-bottom: 1px;
+}
+
+	/* Place of mind */
+	#UbcMegaMenuesWrapper.UbcMindLink
+	{
+		background: #005893 url(../../img/header/rssBgTop.gif) repeat-x top left;
+	}
+	
+	#UbcMegaMenues.UbcMindLink
+	{
+		background: transparent url(../../img/header/rssBgBottom.gif) repeat-x bottom left;
+		color: #fff;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcMenuSection h3
+	{
+		font-size: 140%;
+		margin-top: 1.5em;
+		line-height: 1em;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcMenuSection p
+	{
+		color: #fff;
+		margin: 0.8em 0;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcMenuSection p.UbcDate
+	{
+		font-style: italic;
+		font-size: 90%;
+		margin: 0.5em 0;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcMenuSection a.UbcMore
+	{
+		display: block;
+		margin: 1em 0;
+		text-decoration: underline;
+		font-weight: bold;
+		font-size: 100%;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcMenuSection a.UbcMore:hover
+	{
+		text-decoration: none;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcPMCallout
+	{
+		width: 295px;
+		float: left;
+		margin: 50px 20px 0 0;
+		text-align: left;
+	}
+	
+	#UbcMegaMenues li.UbcPMCallout h2
+	{
+		width: 282px;
+		height: 85px;
+		text-indent: -5000px;
+		background: transparent url(../../img/header/placeOfMindCallout.gif) no-repeat;
+	}
+	
+	#UbcMegaMenues li.UbcPMCallout a
+	{
+		display: block;
+		width: 114px;
+		height: 30px;
+		text-indent: -5000px;
+		background: transparent url(../../img/header/placeOfMindLearnMoreBtn.gif) no-repeat;
+		margin: 15px 0 0 0;
+	}
+	
+	#UbcMegaMenues.UbcMindLink li.UbcMenuSection
+	{
+		width: 165px;
+		margin-right: 20px;
+		padding-left: 20px;
+		border-left: 1px solid #004472;
+	}
+
+/* header */
+#UbcHeader
+{
+	height: 98px;
+	background-color: #002859; /* Needs to be configured with White #ffffff, UBC Blue #002859 or UBC Grey #7491a3 */
+}
+
+#UbcHeader h1#UbcLogo
+{
+	width: 97px;
+	background: url(../../img/header/ubcLogo.gif) no-repeat;
+}
+
+#UbcHeader h1#UbcLogo a
+{
+	display: block;
+	height: 98px;
+	text-indent: -5000px;
+	border-right: 3px solid #fff;
+}
+
+#UbcHeader li.UbcMindLink
+{
+    background: url(../../img/header/placeOfMind.gif) no-repeat 0 0;
+	border-right: 3px solid #fff;
+}
+
+#UbcHeader a#UbcMindLink
+{
+	display: block;
+	width: 187px;
+	height: 98px;
+	text-indent: -5000px;
+	background: url(../../img/header/PlaceOfMind-Gif-V04-unanimated.gif) no-repeat;
+}
+
+#UbcHeader a#UbcMindLink.UbcSelected
+{
+	background-position: 0 -98px;
+}
+
+#UbcHeader li
+{
+	float: left;
+	height: 98px;
+}
+
+#UbcHeader li#UbcHeaderLine
+{
+	margin: 0;
+	padding: 0;
+	background: url(../../img/header/ubcHeader.gif) no-repeat;
+	width: 379px; /* With Sub Unit Identification */
+	/* width: 692px; Main UBC.ca and Okanagan Homepage Identification Only */
+}
+
+#UbcHeader li#UbcSubUnitLine
+{
+	margin: 0;
+	padding: 0;
+	background: url(../../img/header/ubcSubUnit.gif) no-repeat;
+	width: 314px;
+}
+
+#UbcHeader li#UbcHeaderLine a, #UbcHeader li#UbcSubUnitLine a  {
+	display: block;
+	height: 98px;
+}
+
+#UbcHeader li#UbcHeaderLine a span, #UbcHeader li#UbcSubUnitLine a span {
+	position: absolute;
+	top: -9999px;
+}
+
+/* UBC Content Area */
+#UbcContentWrapper
+{
+	padding: 1px 0 0 0;
+	background: #fbfbfb url(../../img/content/contentBg.gif) repeat-x 0 -2px;
+	
+}
+
+#UbcContent
+{
+        min-height: 500px;
+	background: #fff;
+	padding: 0 0 20px 0;
+}
+
+/* UBC Info */
+#UbcBottomInfoWrapper
+{
+	border-top: 3px solid #0e2f49;
+}
+
+#UbcBottomInfo
+{
+	padding: 20px 0;
+	border-color: #fff;
+}
+
+#UbcBottomInfo p
+{
+	float: left;
+	color: #758291;
+	font-size: 80%;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+
+#UbcBottomInfo p.UbcFirst, #UbcBottomLeft 
+{
+	margin: 0 150px 0 0;
+}
+
+#UbcBottomLeft, #UbcBottomCenter {
+	float: left;
+}
+
+#UbcBottomInfo p.UbcLast, #UbcBottomRight
+{
+	float: right;
+	margin-right: 22px;
+}
+
+/* bottom utility navigation */
+#UbcUtilNavWrapper
+{
+	background: #001c33 url(../../img/footer/utilNavBg.gif) repeat-x;
+}
+
+#UbcUtilNav
+{
+    border-color: #001c33;
+}
+
+#UbcUtilNav p
+{
+	color: #fff;
+	font-size: 80%;
+	font-weight: bold;
+	margin: 1.5em 0;
+	text-align: center;
+}
+
+#UbcUtilNav p a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+#UbcUtilNav p a:hover
+{
+	text-decoration: underline;
+}

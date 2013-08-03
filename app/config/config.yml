@@ -1,0 +1,119 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    #translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        
+        - ProomsRoomsBundle
+        - ProomsSecurityBundle
+    #java: /usr/bin/java
+    filters:
+        jpegoptim:
+            bin: path/to/jpegoptim
+        cssrewrite: ~
+        less:
+            # Change this to the path of your local nodejs binary. That's for debian sid; often it's /usr/bin/node or similar.
+            node: /usr/bin/nodejs
+            # Make sure you have installed npm, the node package manager. Then, issue either
+            # npm install --global less (for installing less globally)
+            # -or-
+            # npm install less  (for installing it in your home directory)
+            #
+            # The npm installer will report where it has installed the module; in my case, it reported:
+            # less@1.3.3 /usr/local/lib/node_modules/less
+            # Add the path excluding the less module to the node_paths:
+            node_paths: [ /usr/local/lib/node_modules/ ]
+            apply_to:   "\.less$"
+    assets:
+        bootstrap_css:
+            inputs:
+                # This is a custom build file which works together with bootswatch.
+                # Note that all files you specify here are processed one after each other,
+                # so you can't simply add twitter's bootstrap.less and your local variables.less here.
+                # You can choose whatever directory you wish, and name it whatever you wish.
+                - %kernel.root_dir%/../src/PartKeepr/SaaSBundle/Resources/less/build.less
+            filters:
+                - less
+                - cssrewrite
+                # This is the output file which you'll have to include using asset('css/bootstrap.css') in your template.
+                # You can generate the CSS file by using the assetic:dump sf2 command (php app/console assetic:dump)
+            output: css/bootstrap.css
+        bootstrap_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-transition.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-alert.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-button.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-carousel.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-collapse.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-dropdown.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-modal.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-tooltip.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-popover.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-tab.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-typeahead.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-affix.js
+            output: js/bootstrap.js
+        jquery:
+            inputs:
+                - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+            output: js/jquery.js
+        
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+    
+bc_bootstrap:
+    assets_dir:  %kernel.root_dir%/../vendor/twitter/bootstrap
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+    
+

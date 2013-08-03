@@ -1,0 +1,46 @@
+<html>
+    <head><title>Print Room Schedule</title></head>
+    <body>
+        <h3>Practice room {{ room.id }}</h3>
+        <div>
+        {{ include('::showTimetable.html.twig') }}
+        </div>
+    </body>
+</html>
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"
+               data-dojo-config="async: true"></script>
+<script>
+require(["dojo/dom", "dojo/query", "dojo/on", "dojo/ready", "dojo/_base/lang", "dojo/NodeList-traverse", "dojo/dom-class", "dojo/domReady!"],
+    function(dom, query, on, ready, hitch, domClass) {
+        ready(function(){
+            var term1_tbody = query('#term_1').children();
+            var term1_tr_list = query('> tr', term1_tbody[0]);
+            var term2_tbody = query('#term_2').children();
+            var term2_tr_list = query('> tr', term2_tbody[0]);
+            {% for hour in room.unavailableHours %}
+                {% if hour.term == 1 %}
+                    var term1_tdList = query('> td', term1_tr_list[{{hour.startTime}}]);
+                    term1_tdList[{{hour.dayOfWeek}}].innerHTML="unavailable";
+                {% elseif hour.term == 2 %}
+                    var term2_tdList = query('> td', term2_tr_list[{{hour.startTime}}]);
+                    term2_tdList[{{hour.dayOfWeek}}].innerHTML="unavailable";
+                {% endif %}
+            {% endfor %}
+            {% for hour in bookedHours %}
+                {% if hour.term == 1 %}
+                    var term1_tdList = query('> td', term1_tr_list[{{hour.startTime}}]);
+                    term1_tdList[{{hour.dayOfWeek}}].innerHTML='<font size="1"><b>{{hour.user.lastName}}, {{hour.user.firstName}}</b></font>';
+                {% elseif hour.term == 2 %}
+                    var term2_tdList = query('> td', term2_tr_list[{{hour.startTime}}]);
+                    term2_tdList[{{hour.dayOfWeek}}].innerHTML='<font size="1"><b>{{hour.user.lastname}}, {{hour.user.firstname}}</b></font>';
+                {% endif %}
+            {% endfor %}
+        });
+ 
+});
+</script>

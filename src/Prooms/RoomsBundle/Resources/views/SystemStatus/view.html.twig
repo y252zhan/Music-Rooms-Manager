@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    
+</style>
+{% endblock %}
+
+{% block title %}Manage System Status{% endblock %}
+
+{% block body %}
+    <h1>Manage Systum Status</h1>
+    
+    <div>
+    <h3>System Status</h3>
+    <table>
+        <tr>
+            {% if isSystemOpen %}
+                <td>The system is currently open.</td>
+                <td>
+                    <a href="{{ path('prooms_system_status_close') }}">
+                        <button type='button' class="btn btn-mini">Close the system</button></a></td>
+            {% else %}
+                <td>The system has been closed.</td>
+                <td>
+                    <a href="{{ path('prooms_system_status_open') }}">
+                        <button type='button' class="btn btn-mini">Reopen the system</button></a></td>
+            {% endif %}
+        </tr>
+     
+    </table>
+    </div>
+     
+    <h3>Student Booking Hours Status</h3>
+    <div>
+        <a href="{{ path('prooms_rooms_schedules_remove_all') }}">
+            <button type='button' class="btn btn-mini" onclick="return confirmAction()">Reset database</button>
+    </div>
+    
+{% endblock %}
+    
+{% block javascripts %}
+<script>
+    function confirmAction() {
+        var confirmed = confirm("Are you sure? This will remove all students from practice rooms they signed up.");
+        return confirmed;
+    }
+</script>
+{% endblock %}

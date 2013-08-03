@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    #unavailable_msg {
+        margin-left: 100px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Manage System Status{% endblock %}
+
+{% block body %}
+<div id="unavailable_msg">
+    <h1>The system is currently unavailable!</h1>
+</div>
+{% endblock %}

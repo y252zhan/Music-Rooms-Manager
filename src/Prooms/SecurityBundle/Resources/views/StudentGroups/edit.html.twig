@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+    #student_group_openingDatetime_date select {
+        width: 80px;
+    }
+    #student_group_openingDatetime_time select {
+        width: 90px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Edit Student Group{% endblock %}
+
+{% block body %}
+    <h3>
+        Student Group : 
+        {% if studentGroup.isDefault %} 
+            Default Group 
+        {% else %}
+            {{studentGroup.id}}
+        {% endif %}
+    </h3>
+    <form action="{{ path('prooms_student_groups_edit', {'id' : studentGroup.id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_student_groups_list') }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+    
+{% endblock %}

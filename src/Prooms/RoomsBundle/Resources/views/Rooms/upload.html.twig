@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Upload Rooms List{% endblock %}
+
+{% block body %}
+    <h3>Upload Rooms List</h3>
+    <form action="{{ path('prooms_rooms_upload') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_rooms_list') }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+{% endblock %}

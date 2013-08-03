@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Manage rooms{% endblock %}
+
+{% block body %}
+    <h3>Room {{room.id}} constraints</h3>
+    
+        {% if constraints|length == 0 %}
+            <p>None</p>
+        {% else %}
+            <table border="1">
+                <tr>
+                    <th>Instrument</th>
+                    <th>Actions</th>
+                </tr>
+                {% for constraint in constraints %}
+                    <tr>
+                        <td>{{constraint.instrument}}</td>
+                        <td>
+                            {% if constraints|length == 1 %}
+                                <a href="{{ path('prooms_constraints_delete', {
+                                    'roomId' : room.id,
+                                    'instrument' : constraint.instrument
+                                }) }}">
+                                    <button class="btn btn-mini">delete</button></a>
+                            {% else %}
+                                <a href="{{ path('prooms_constraints_delete', {
+                                    'roomId' : room.id,
+                                    'instrument' : constraint.instrument
+                                }) }}" id="{{constraint.instrument}}">
+                                    <button class="btn btn-mini">delete</button></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    <a href="{{ path('prooms_constraints_add', {'roomId' : room.id}) }}">
+        <button class="btn btn-mini">add</button></a>
+    <a href="{{ path('prooms_rooms_show', {'id' : room.id}) }}">
+        <button type='button' class="btn btn-mini">cancel</button></a>
+    <a href="{{ path('prooms_constraints_apply', {'roomId' : room.id}) }}">
+        <button type='button' onclick="return confirmAction()" class="btn btn-mini">Apply constraints</button></a>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function confirmAction() {
+        var confirmed = confirm("Are you sure? "
+            + "This will remove all students who do not meet constraints from the room. "
+            + "A CSV file with those students' information will be downloaded automatically!");
+        return confirmed;
+    }
+</script>
+{% endblock %}

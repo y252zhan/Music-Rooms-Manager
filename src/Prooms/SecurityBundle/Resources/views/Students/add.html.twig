@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block body %}
+    <h1>Add Student</h1>
+    <form action="{{ path('prooms_students_add') }}" method="post" {{ form_enctype(form) }}>
+        <div class="form_error">
+            <p>{{ form_errors(form) }}</p>
+        </div>
+        {{ form_rest(form) }}
+        <input class="btn btn-mini" value="Submit" type="submit" />
+        <a href="{{ path('prooms_students_list') }}">
+            <button class="btn btn-mini" type='button'>cancel</button></a>
+    </form>
+{% endblock %}

@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Test Application{% endblock %}</title>
+        {% block stylesheets %}
+
+        {% endblock %}
+        
+        <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bootstrap/css/docs.css') }}" rel="stylesheet" />
+        
+	<link rel="stylesheet" type="text/css" href="{{asset('css/clf-required-fixedwidth.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('css/clf-typography.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('css/clf-optional.css')}}" />
+</head>
+<body>
+<div id="UbcHeaderWrapper">
+  <div id="UbcToolBarWrapper">
+    <div id="UbcToolBar" class="UbcContainer">
+      <ul id="UbcToolNav">
+        <li><a id="UbcCampusLinks" href="http://www.ubc.ca/campuses/">Campuses</a></li>
+        <li><a id="UbcDirectLinks" href="http://www.ubc.ca/directories/">UBC Directories</a></li>
+        <li><a id="UbcQuickLinks" href="http://www.ubc.ca/quicklinks/">UBC Quick Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <ul id="UbcHeader" class="UbcContainer">
+    <li>
+      <h1 id="UbcLogo"><a href="http://www.ubc.ca">The University of British Columbia</a></h1>
+    </li>
+    <li class="UbcMindLink"><a href="http://www.aplaceofmind.ubc.ca/" id="UbcMindLink">a place of mind</a></li>
+    <li id="UbcHeaderLine"><a href="http://www.ubc.ca/" id="UbcHeaderLink"><span>The University of British Columbia</span></a></li>
+    <li id="UbcSubUnitLine"><a href="/home.html" id="UbcSubUnitLink"><span>SCHOOL OF MUSIC</span></a></li>
+  </ul>
+</div>
+<div id="UbcContentWrapper">
+    <div id="UbcContent" class="UbcContainer">
+        <div>
+            {% if app.user %}
+                <p id="logedinBar">
+                    Welcome, {{ app.user.username }} &nbsp;&nbsp;&nbsp;
+                    <a href="{{ path('logout' ) }}"><button class="btn btn-mini" type="button">Logout</button></a>
+                </p>
+            {% else %}
+                <p id="loginBar">
+                    <a href="{{ path('login' ) }}"><button class="btn btn-mini" type="button">Login</button></a>
+                </p>
+            {% endif %}
+        </div>
+        <div id="musicTitleBar">
+            <h1>School of Music</h1>
+        </div>
+        <div id="flashBar">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    <p><b>{{ flashMessage }}</b></p>
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="flash-error">
+                    <p><b>{{ flashMessage }}</b></p>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="registration_start_time">
+            
+        </div>
+        <div id="tree" class="sidebar">
+            <table id="menu">
+                {% if app.user and not is_granted('ROLE_STAFF') %}
+                    <tr><td>
+                        <a href="{{ path('prooms_students_view', {'id' : app.user.id})}}">Personal Information</a>
+                    </td></tr>
+                {% endif %}
+                <tr><td>
+                    <a href="{{ path('prooms_rooms_list' ) }}">View Practice Rooms</a>
+                </td></tr>
+                {% if not app.user or is_granted('ROLE_STUDENT') %}
+                <tr><td>
+                    <a href="{{ path('prooms_rooms_schedules_user' ) }}">Timetable</a>
+                </td></tr>
+                {% endif %}
+                {% if app.user and is_granted('ROLE_STAFF') %}
+                    <tr><td><a href="{{ path('prooms_staffs_list' ) }}">Manage Staff</a></td></tr>
+                    <tr><td><a href="{{ path('prooms_students_list' ) }}">Manage Students</a></td></tr>
+                    <tr><td><a href="{{ path('prooms_student_groups_list' ) }}">Manage Student Groups</a></td></tr>
+                    <tr><td><a href="{{ path('prooms_system_status_view' ) }}">Manage System Status</a></td></tr>
+                {% endif %}
+            </table>
+            {#<ul class="navSecondary">  
+                {% if app.user and app.user.isStudent %}
+                    <li><a href="{{ path('prooms_students_view', {'id' : app.user.id})}}">Personal Information</a></li>
+                {% endif %}
+                    <li><a href="{{ path('prooms_rooms_list' ) }}">View Practice Rooms</a></li>
+                    <li><a href="{{ path('prooms_rooms_schedules_user' ) }}">Timetable</a></li>
+                {% if app.user and app.user.isStaff %}
+                    <li><a href="{{ path('prooms_staffs_list' ) }}">Manage Staffs</a></li>
+                    <li><a href="{{ path('prooms_students_list' ) }}">Manage Students</a></li>
+                {% endif %} 
+            </ul> #}
+        </div>
+        <div id="UbcMainContent">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+<div id="UbcBottomInfoWrapper">
+  <div id="UbcBottomInfo" class="UbcContainer">
+    <div id="UbcBottomLeft" >
+      <p>
+          <a href="http://www.ubc.ca">
+            <img src="{{asset('img/footer/logo.gif')}}" alt="a place of mind, The Univeristy of British Columbia" />
+          </a>
+      </p>
+    </div>
+    <div id="UbcBottomCenter">
+      <p>FACULTY OF ARTS</p>
+    </div>
+    <div id="UbcBottomRight">
+      <p>UBC School of Music<br />
+        Music Building<br/>
+        6361 Memorial Road&#8232;<br />
+        Vancouver, BC V6T 1Z2<br />
+        Tel: 604.822.3113<br />
+        Fax: 604.822.4884<br /></p>
+    </div>
+  </div>
+</div>
+<div id="UbcUtilNavWrapper">
+  <div id="UbcUtilNav" class="UbcContainer">
+    <p> <a href="http://www.emergency.ubc.ca">Emergency Procedures</a>&nbsp;|&nbsp;<a href="http://www.ubc.ca/accessibility/">Accessibility</a>&nbsp;|&nbsp;<a href="http://www.ubc.ca/about/contact/">Contact UBC</a>&nbsp;|&nbsp;<a href="http://www.ubc.ca/copyright/">&copy; Copyright  The University of British Columbia</a></p>
+  </div>
+</div>
+{% block javascripts %}
+    <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+</body>
+</html>
+
+<style type="text/css">
+#logedinBar {
+    float: right;
+    width: 200px;
+}
+#loginBar {
+    float: right;
+    width: 50px;
+}
+
+.flash-notice{
+    background-color: lightblue;
+    width: 980px;
+    height: 60px;
+    text-align: center;
+    font-size:medium;
+}
+
+#registration_start_time {
+    width: 980px;
+    height: 30px;
+    text-align: center;
+}
+
+.flash-error{
+    background-color:#d66;
+    width: 980px;
+    height: 60px;
+    text-align: center;
+    font-size:medium;
+}
+
+.timeCol {
+    width: 120px;
+    text-align: center;
+}
+
+#menu {
+    margin-top: 15px;
+    border-collapse:collapse;
+    background-color:#f5f5f5;
+    min-height: 80px; 
+    
+}
+
+#menu td
+{
+border: 1px solid lightgrey;
+text-align: left;
+}
+
+#musicTitleBar {
+    height: 48px;
+    background-color:#195f91;
+    margin-top: 50px;
+}
+#musicTitleBar h1 {
+    font-weight: normal;
+    color: #fff;
+    padding: 5px;
+}
+.form_error {
+    background-color:#EE5757;
+}
+.form_error p {
+    text-align: center;
+}
+</style>
+
+{#<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Test Application{% endblock %}</title>
+    {% block stylesheets %}
+
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/css/docs.css') }}" rel="stylesheet">
+
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+          </a>  
+          <div class="nav-collapse">  
+            <ul class="nav" id="menu">  
+              <li class="active"><a href="#">Home</a></li>  
+              <li><a href="#about">About</a></li>  
+              <li><a href="#contact">Contact</a></li>  
+            </ul>  
+            <p class="navbar-text pull-right">
+                {% if app.user %}
+                    Welcome, {{ app.user.username }}
+                    <a href="{{ path('logout' ) }}"><button class="btn btn-mini btn-info" type="button">Logout</button></a>
+                {% else %}
+                    <a href="{{ path('login' ) }}"><button class="btn btn-mini btn-info" type="button">Login</button></a>
+                    <a href="{{ path('register') }}"><button class="btn btn-mini btn-info" type="button">Register</button></a>
+                {% endif %}
+            </p>  
+          </div>
+        </div>
+      </div>
+    </div>
+    <header class="jumbotron subhead" id="overview">
+        <div class="container">
+            <h1>School Of Music</h1>
+            <p class="lead">University of British Columbia</p>
+        </div>
+    </header>
+    <div class="container">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                <p>{{ flashMessage }}</p>
+            </div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="flash-error">
+                <p>{{ flashMessage }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span3 bs-docs-sidebar">
+                <ul class="nav nav-list">  
+                    {% if app.user and app.user.isStudent %}
+                        <li><a href="{{ path('prooms_students_view', {'id' : app.user.id})}}">Personal Information</a></li>
+                    {% endif %}
+                        <li><a href="{{ path('prooms_rooms_list' ) }}">View Practice Rooms</a></li>
+                        <li><a href="{{ path('prooms_rooms_schedules_user' ) }}">Timetable</a></li>
+                    {% if app.user and app.user.isStaff %}
+                        <li><a href="{{ path('prooms_staffs_list' ) }}">Manage Staffs</a></li>
+                        <li><a href="{{ path('prooms_students_list' ) }}">Manage Students</a></li>
+                    {% endif %} 
+                </ul> 
+            </div>
+            <div class="span9">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>footer message goes here if needed.</p>
+        
+      </div>
+    </footer>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        /*
+        var make_button_active = function()
+        {
+            //Get item siblings
+            var siblings =($(this).siblings());
+            console.debug(siblings.length);
+
+            //Remove active class on all buttons
+            siblings.each(function (index)
+                {
+                    $(this).removeClass('active');
+                }
+            )
+
+
+            //Add the clicked button class
+            $(this).addClass('active');
+        }
+
+        //Attach events to menu
+        $(document).ready(
+            function()
+            {
+                $("#menu li").click(make_button_active);
+            }  
+        )*/
+    </script>
+    {% block javascripts %}
+        
+    {% endblock %}
+  </body>
+</html>
+
+<style type="text/css">
+header {
+    text-align: center;
+}
+.flash-notice{
+    background-color:lightblue;
+    width: 980px;
+    height: 20px;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+.flash-error{
+    background-color:#d66;
+    width: 980px;
+    height: 20px;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+#overview h1{
+    font-size: 70px;
+    margin-bottom: 5px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: #FF6600;
+}
+</style>
+
+{#<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Test Application{% endblock %}</title>
+        {% block stylesheets %}
+            
+        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    </head>
+    <body>
+        <div class="header">
+            <h1 align="center">UBC School of Music</h1>
+        </div>
+        <div class="login">
+            {% if app.user %}
+                Welcome, {{ app.user.username }}
+                <a href="{{ path('logout' ) }}"><button type="button">Logout</button></a>
+            {% else %}
+                <a href="{{ path('login' ) }}"><button type="button">Login</button></a>
+                <a href="{{ path('register') }}"><button type="button">Register</button></a>
+            {% endif %}
+        </div>
+        
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                <p>{{ flashMessage }}</p>
+            </div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="flash-error">
+                <p>{{ flashMessage }}</p>
+            </div>
+        {% endfor %}
+        
+            
+        <div class="container">
+            <div class="left" id="sidebar">
+                {% block sidebar %}
+                <ul>
+                    {% if app.user == NULL or app.user.isStudent %}
+                    <li><a href="{{ path('prooms_students_view_personal_info')}}">Personal Information</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('prooms_rooms_list' ) }}">View Practice Rooms</a></li>
+                    <li><a href="{{ path('prooms_rooms_schedules_user' ) }}">Timetable</a></li>
+                    {% if app.user and app.user.isStaff %}
+                        <li><a href="{{ path('prooms_staffs_list' ) }}">Manage Staffs</a></li>
+                        <li><a href="{{ path('prooms_students_list' ) }}">Manage Students</a></li>
+                    {% endif %}
+                </ul>
+                {% endblock %}
+            </div>
+
+            <div class="right" id="primary">
+                <div id="content">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
+        {% endblock %}
+    </body>
+</html>
+<style type="text/css">
+    .container {
+      width: 980px;
+      margin-left:auto;
+      margin-right:auto;
+      margin-bottom: 100px;
+    }
+    .header {
+        width: 980px;
+        height: 100px;
+        margin-left:auto;
+        margin-right:auto;
+        margin-bottom: 20px;
+        background: lightblue;
+        alignment-adjust: central;
+    }
+    .login{
+        width: 980px;
+        height: 20px;
+        text-align: right;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .flash-notice{
+        background-color:#6d6;
+        width: 980px;
+        height: 20px;
+        text-align: right;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .flash-error{
+        background-color:#d66;
+        width: 980px;
+        height: 20px;
+        text-align: right;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    p{
+        text-align: center;
+    }
+    .header h1 {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    #sidebar {
+        display: inline;
+        position: relative;
+        width: 260px;
+        float:left;
+        background: lightblue;
+    }
+    #primary {
+        clear: none;
+        display: inline;
+        float: left;
+        left: 10px;
+        margin-left: 30px;
+        margin-bottom: 100px;
+        position: relative;
+        width: 690px;
+    }
+    ul {
+        list-style: none outside none;
+    }
+    li {
+        border-bottom: 1px solid #E3E3E3;
+        margin: 0 0 -1px;
+        padding-bottom: 2px;
+        padding-top: 5px;
+        font-size: 1em;
+        width: 100%;
+    }
+    a:link {text-decoration:none;}
+    a:visited {text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    a:active {text-decoration:underline;}
+    a {
+        color:#333;
+    }
+    .timeCol {
+        width: 120px;
+        text-align: center;
+    }
+</style>#}

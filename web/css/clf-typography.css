@@ -1,0 +1,169 @@
+/********************************************************************************************
+File:           clf-typography.css
+Version:        6.0
+Last Modified:  Aug-25-2009
+---------------------------------------------------------------------------------------------
+Description:    Stylehseet for the University of British Columbia's web sites.
+---------------------------------------------------------------------------------------------
+Notes:          CSS styles for content typography. Default template based on Blueprint.org.
+---------------------------------------------------------------------------------------------
+Version Notes:
+- v.6.0:        Official CSS styles released with Template 6.0.
+---------------------------------------------------------------------------------------------
+Contact:        UBC Public Affairs
+                t: 604.822.2130
+                e: web.admin@ubc.ca
+                w: www.webcommunications.ubc.ca
+
+********************************************************************************************/
+
+/* Headings
+-------------------------------------------------------------- */
+
+#UbcContent h1,
+#UbcContent h2,
+#UbcContent h3,
+#UbcContent h4,
+#UbcContent h5,
+#UbcContent h6
+{
+	margin: 1em 0 0.5em 0;
+	font-weight: bold;
+	color: #123b5c;
+	color: #333333;
+}
+
+#UbcMainContent .UbcHeadline
+{
+	color: #123b5c;
+	text-transform: uppercase;
+}
+
+#UbcContent h1
+{
+	font-size: 200%;
+}
+
+#UbcContent h2
+{
+	font-size: 150%;
+}
+
+#UbcContent h3
+{
+	font-size: 125%;
+}
+
+#UbcContent h1 img, #UbcContent h2 img, #UbcContent h3 img, 
+#UbcContent h4 img, #UbcContent h5 img, #UbcContent h6 img {
+  margin: 0;
+}
+
+
+/* Text elements
+-------------------------------------------------------------- */
+
+/*#UbcContent p           { margin: 1em 0; line-height: 1.5em; }
+MOD*/
+#UbcContent p           { margin: 1em 0;line-height: 1.5em; font-weight:lighter;}
+
+#UbcContent p img.left  { float: left; margin: 1.5em 1.5em 1.5em 0; padding: 0; }
+#UbcContent p img.right { float: right; margin: 1.5em 0 1.5em 1.5em; }
+
+#UbcContent a:focus, 
+#UbcContent a:hover     { }
+/*MOD*/
+#UbcContent a:hover     { text-decoration: underline; }
+#UbcContent a           { color: #708ea1; text-decoration: underline; }
+/*MOD*/
+#UbcContent a           { text-decoration: none; }
+
+#UbcContent blockquote  { margin: 1.5em; color: #666; font-style: italic; }
+#UbcContent strong      { font-weight: bold; }
+#UbcContent em, #UbcContent dfn      { font-style: italic; }
+#UbcContent dfn         { font-weight: bold; }
+#UbcContent sup, #UbcContent sub    { line-height: 0; }
+
+#UbcContent abbr, 
+#UbcContent acronym     { border-bottom: 1px dotted #666; }
+#UbcContent address     { margin: 0 0 1.5em; font-style: italic; }
+#UbcContent del         { color:#666; }
+
+#UbcContent pre 				{ margin: 1.5em 0; white-space: pre; }
+#UbcContent pre,
+#UbcContent code,
+#UbcContent tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+
+
+/* Lists
+-------------------------------------------------------------- */
+
+#UbcContent li ul, 
+#UbcContent li ol       { margin:0 1.5em; }
+#UbcContent ul, ol      { margin: 0 1.5em 1.5em 1.5em; }
+
+#UbcContent ul li{line-height:1.2em;}
+
+#UbcContent ul          { list-style-type: disc; }
+#UbcContent ol          { list-style-type: decimal; }
+
+#UbcContent dl          { margin: 0 0 1.5em 0; }
+#UbcContent dl dt       { font-weight: bold; }
+#UbcContent dd          { margin-left: 1.5em;}
+
+
+/* Tables
+-------------------------------------------------------------- */
+
+#UbcContent table       { margin-bottom: 1.4em; width:100%; }
+#UbcContent th          { font-weight: bold; }
+#UbcContent thead th 		{ background: #728FA2; }
+#UbcContent th,
+#UbcContent td,
+#UbcContent caption { padding: 4px 10px 4px 5px; }
+#UbcContent tr.even td  { background: #e5ecf9; }
+#UbcContent tfoot       { font-style: italic; }
+#UbcContent caption     { background: #eee; }
+
+
+/* Misc classes
+-------------------------------------------------------------- */
+
+#UbcContent .small      { font-size: .8em; margin-bottom: 1.875em; line-height: 1.875em; }
+#UbcContent .large      { font-size: 1.2em; line-height: 2.5em; margin-bottom: 1.25em; }
+#UbcContent .hide       { display: none; }
+
+#UbcContent .quiet      { color: #666; }
+#UbcContent .loud       { color: #000; }
+#UbcContent .highlight  { background:#ff0; }
+#UbcContent .added      { background:#060; color: #fff; }
+#UbcContent .removed    { background:#900; color: #fff; }
+
+#UbcContent .first      { margin-left:0; padding-left:0; }
+#UbcContent .last       { margin-right:0; padding-right:0; }
+#UbcContent .top        { margin-top:0; padding-top:0; }
+#UbcContent .bottom     { margin-bottom:0; padding-bottom:0; }
+
+#UbcContent p.intro
+{
+	color: #123b5c;
+	font-size: 175%;
+	font-weight: bold;
+	line-height: 1.1em;
+}
+
+.UbcImageCaption {
+	float: left;
+	background-color: #f2f2f2;
+	margin: 0.5em 1em 0.5em 0;
+}
+.UbcImageCaption img {
+	margin: 0;
+}
+.UbcImageCaption p {
+	color: #666;
+	font-size: 0.8em;
+	margin: 0 !important;
+	padding: 2px 1em;
+}
+#UbcContent .treeview-red a{font-size:12px; color:#333333}

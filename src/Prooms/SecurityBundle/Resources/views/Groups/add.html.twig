@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+    td{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Create User Group{% endblock %}
+
+{% block body %}
+    <h1>Add New User Group</h1>
+    <form action="{{ path('prooms_groups_add') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input value="Submit" type="submit" />
+    </form>
+    <a href="{{ path('prooms_groups_list') }}"><button type='button'>cancel</button></a>
+    
+{% endblock %}
